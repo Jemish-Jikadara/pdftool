@@ -414,6 +414,56 @@ button { font-family: inherit; cursor: pointer; }
   border: none;
 }
 
+/* File chip — used for PDFs/Word docs where a thumbnail isn't possible */
+.file-chip {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--bg-elevated);
+  position: relative;
+}
+.file-chip-icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  color: var(--amber);
+}
+.file-chip-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding-right: 20px;
+}
+.file-chip-name {
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.file-chip-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+}
+.file-chip .rm {
+  position: absolute; top: 8px; right: 8px;
+  width: 18px; height: 18px;
+  background: var(--bg-card);
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+  border: none;
+  flex-shrink: 0;
+}
+
 .field-group { margin-top: 20px; display: flex; flex-direction: column; gap: 18px; }
 .field label {
   display: flex;

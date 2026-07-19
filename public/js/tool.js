@@ -72,11 +72,30 @@
   function renderPreviews() {
     previewStrip.innerHTML = "";
     selectedFiles.forEach((file, idx) => {
-      if (file.type === "application/pdf") return; // no thumb for pdf
+      const isImage = file.type.startsWith("image/");
+
       const div = document.createElement("div");
-      div.className = "preview-thumb";
-      const img = document.createElement("img");
-      img.src = URL.createObjectURL(file);
+      div.className = isImage ? "preview-thumb" : "file-chip";
+
+      if (isImage) {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        div.appendChild(img);
+      } else {
+        // PDF / Word / anything else without a visual thumbnail:
+        // show a labeled chip so it's obvious the file was added.
+        const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+        div.innerHTML = `
+          <svg class="file-chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+            <path d="M14 2v6h6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+          </svg>
+          <div class="file-chip-info">
+            <span class="file-chip-name">${file.name}</span>
+            <span class="file-chip-meta">${isPdf ? "PDF" : "DOC"} · ${fmtSize(file.size)}</span>
+          </div>`;
+      }
+
       const rm = document.createElement("button");
       rm.className = "rm";
       rm.textContent = "×";
@@ -87,7 +106,6 @@
         updateCropper();
         toggleRunBtn();
       };
-      div.appendChild(img);
       div.appendChild(rm);
       previewStrip.appendChild(div);
     });
