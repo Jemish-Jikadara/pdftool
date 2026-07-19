@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('partials/head') %>
+</head>
+<body>
+<%- include('partials/header') %>
+
+<%
+  // Split the tool list into two groups for the homepage grid.
+  // Anything that accepts PDFs or Word docs goes in the second group.
+  const imageTools = tools.filter(t => !/pdf|word/i.test(t.accept));
+  const pdfTools = tools.filter(t => /pdf|word/i.test(t.accept));
+%>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><%= tools.length %> tools · one workbench</span>
+    <h1>Every image job,<br><em>one quiet workbench.</em></h1>
+    <p class="sub">Compress, resize, convert, crop, rotate, watermark — merge, split and unlock PDFs — move between PDF, Word and image, without leaving the tab. No account, no watermark on your files, no waiting room.</p>
+
+    <div class="dropzone pulse" id="heroDrop">
+      <svg class="dz-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 16V4M7 9l5-5 5 5M4 20h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p><strong>Drop a file here</strong> to jump straight to the right tool</p>
+      <p class="dz-hint">JPG · PNG · WebP · PDF · DOCX</p>
+      <input type="file" id="heroFileInput" />
+    </div>
+  </div>
+</section>
+
+<div class="sprocket-divider">
+  <span></span><span></span><span></span>
+  <div class="line"></div>
+  <span></span><span></span><span></span>
+</div>
+
+<section class="wrap">
+  <p class="section-label">Image tools</p>
+  <div class="pegboard">
+    <% imageTools.forEach(function(tool) { %>
+      <a href="/tool/<%= tool.slug %>" class="tool-card">
+        <span class="peg-num">#<%= tool.peg %></span>
+        <%- include('partials/icon', { name: tool.icon, cls: 'tool-icon' }) %>
+        <h3><%= tool.name %></h3>
+        <p class="tagline"><%= tool.tagline %></p>
+        <span class="go">Open tool →</span>
+      </a>
+    <% }); %>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="section-label">PDF &amp; document tools</p>
+  <div class="pegboard">
+    <% pdfTools.forEach(function(tool) { %>
+      <a href="/tool/<%= tool.slug %>" class="tool-card">
+        <span class="peg-num">#<%= tool.peg %></span>
+        <%- include('partials/icon', { name: tool.icon, cls: 'tool-icon' }) %>
+        <h3><%= tool.name %></h3>
+        <p class="tagline"><%= tool.tagline %></p>
+        <span class="go">Open tool →</span>
+      </a>
+    <% }); %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+
+<script>
+  // Hero dropzone: on drop/select, route to the best-guess tool page.
+  const heroDrop = document.getElementById('heroDrop');
+  const heroInput = document.getElementById('heroFileInput');
+
+  function routeForFile(file) {
+    if (file.type === 'application/pdf') return '/tool/compress-pdf';
+    if (file.type.includes('word') || file.name.endsWith('.docx') || file.name.endsWith('.doc')) return '/tool/word-to-pdf';
+    if (file.type === 'image/webp') return '/tool/webp';
+    if (file.type.startsWith('image/')) return '/tool/compress';
+    return null; // not a type we recognize — let the person pick from the grid instead
+  }
+
+  function handleFiles(files) {
+    if (!files || !files.length) return;
+    const dest = routeForFile(files[0]);
+    if (dest) window.location.href = dest;
+  }
+
+  heroDrop.addEventListener('click', () => heroInput.click());
+  heroInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+  ['dragenter', 'dragover'].forEach(evt =>
+    heroDrop.addEventListener(evt, (e) => { e.preventDefault(); heroDrop.classList.add('dragover'); })
+  );
+  ['dragleave', 'drop'].forEach(evt =>
+    heroDrop.addEventListener(evt, (e) => { e.preventDefault(); heroDrop.classList.remove('dragover'); })
+  );
+  heroDrop.addEventListener('drop', (e) => handleFiles(e.dataTransfer.files));
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <%- include('partials/head', { pageTitle: 'FAQ - ImgToolkit' }) %>
+
+    </head>
+
+    <body>
+
+        <%- include('partials/header') %>
+
+        <section class="faq-page">
+
+            <div class="wrap">
+
+                <div class="pricing-header">
+
+                    <h1>Frequently Asked Questions</h1>
+
+                    <p>
+
+                        Everything you need to know about ImgToolkit.
+
+                    </p>
+
+                </div>
+
+                <div class="faq-container">
+
+                    <div class="faq-item">
+
+                        <button class="faq-question">
+
+                            Is ImgToolkit free?
+
+                            <span>+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                Yes. All core image and PDF tools are completely
+                                free to use.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <button class="faq-question">
+
+                            Do I need an account?
+
+                            <span>+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                No. You can use every tool without creating an
+                                account.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <button class="faq-question">
+
+                            Are my uploaded files stored?
+
+                            <span>+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                No. Files are processed temporarily and
+                                automatically removed after processing.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <button class="faq-question">
+
+                            What file formats are supported?
+
+                            <span>+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                JPG, PNG, WebP and PDF are currently supported.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <button class="faq-question">
+
+                            Is there any upload limit?
+
+                            <span>+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                Yes. The current upload limit is 25MB per file.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <button class="faq-question">
+
+                            How can I contact support?
+
+                            <span>+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                Visit the Contact page and send us your query.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <%- include('partials/footer') %>
+
+        <script>
+
+        document.querySelectorAll(".faq-question").forEach(btn => {
+
+            btn.addEventListener("click", () => {
+
+                const item = btn.parentElement;
+
+                item.classList.toggle("active");
+
+            });
+
+        });
+
+    </script>
+
+    </body>
+
+</html>

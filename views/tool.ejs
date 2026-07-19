@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('partials/head', { pageTitle: tool.name + ' — ImgToolkit' }) %>
+<% if (tool.needsCropper) { %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+<% } %>
+</head>
+<body>
+<%- include('partials/header') %>
+
+<section class="wrap tool-page">
+  <div class="tool-header">
+    <div>
+      <span class="peg-tag">Tool #<%= tool.peg %></span>
+      <h1><%= tool.name %></h1>
+      <p><%= tool.desc %></p>
+    </div>
+    <a href="/" class="back-link"><%- include('partials/icon', { name: 'back', cls: 'icon' }) %> All tools</a>
+  </div>
+
+  <div class="workbench">
+    <!-- LEFT: upload + options -->
+    <div class="panel">
+      <h2>01 · Add your file<%= tool.multiple ? 's' : '' %></h2>
+
+      <div class="upload-slot" id="uploadSlot">
+        <%- include('partials/icon', { name: 'upload', cls: 'icon' }) %>
+        <p><strong>Click to browse</strong> or drag a file here</p>
+        <input type="file" id="fileInput" accept="<%= tool.accept %>" <%= tool.multiple ? 'multiple' : '' %> />
+      </div>
+
+      <div class="preview-strip" id="previewStrip"></div>
+
+      <% if (tool.needsCropper) { %>
+        <div class="cropper-wrap hidden" id="cropperWrap">
+          <img id="cropperImg" src="" alt="Crop preview" />
+        </div>
+      <% } %>
+
+      <% if (tool.fields.length) { %>
+        <div class="field-group">
+          <% tool.fields.forEach(function(f) { %>
+            <% if (f.hidden) { %>
+              <input type="hidden" name="<%= f.name %>" id="field-<%= f.name %>" value="<%= f.value || '' %>" />
+            <% } else if (f.type === 'range') { %>
+              <div class="field">
+                <label for="field-<%= f.name %>"><%= f.label %> <span class="val" id="val-<%= f.name %>"><%= f.value %><%= f.unit || '' %></span></label>
+                <input type="range" name="<%= f.name %>" id="field-<%= f.name %>" min="<%= f.min %>" max="<%= f.max %>" value="<%= f.value %>" />
+              </div>
+            <% } else if (f.type === 'checkbox') { %>
+              <div class="field checkbox">
+                <input type="checkbox" name="<%= f.name %>" id="field-<%= f.name %>" <%= f.value ? 'checked' : '' %> />
+                <label for="field-<%= f.name %>"><%= f.label %></label>
+              </div>
+            <% } else if (f.type === 'select') { %>
+              <div class="field">
+                <label for="field-<%= f.name %>"><%= f.label %></label>
+                <select name="<%= f.name %>" id="field-<%= f.name %>">
+                  <% f.options.forEach(function(o) { %>
+                    <option value="<%= o.value %>"><%= o.label %></option>
+                  <% }); %>
+                </select>
+              </div>
+            <% } else { %>
+              <div class="field">
+                <label for="field-<%= f.name %>"><%= f.label %></label>
+                <input type="<%= f.type %>" name="<%= f.name %>" id="field-<%= f.name %>" placeholder="<%= f.placeholder || '' %>" />
+              </div>
+            <% } %>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <button class="run-btn" id="runBtn" disabled>
+        <%- include('partials/icon', { name: 'arrow', cls: 'icon' }) %>
+        Run <%= tool.name %>
+      </button>
+    </div>
+
+    <!-- RIGHT: status / result -->
+    <div class="panel status-panel">
+      <h2>02 · Result</h2>
+      <div id="statusArea">
+        <div class="status-empty" id="stateEmpty">
+          <div class="ring"></div>
+          <p>Your processed file will show up here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+
+<% if (tool.needsCropper) { %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+<% } %>
+<script>
+  const TOOL_SLUG = <%- JSON.stringify(tool.slug) %>;
+  const MULTIPLE = <%- JSON.stringify(!!tool.multiple) %>;
+  const NEEDS_CROPPER = <%- JSON.stringify(!!tool.needsCropper) %>;
+</script>
+<script src="/js/tool.js"></script>
+</body>
+</html>

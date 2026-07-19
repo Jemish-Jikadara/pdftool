@@ -1,0 +1,125 @@
+<header class="site-header">
+
+  <div class="wrap nav-wrapper">
+
+    <!-- Logo -->
+    <a href="/" class="brand">
+
+      <span class="brand-mark">IT</span>
+
+      <span>
+
+        ImgToolkit
+
+        <small>DARKROOM &amp; WORKBENCH</small>
+
+      </span>
+
+    </a>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+
+      <a href="/">Home</a>
+
+      <div class="dropdown">
+
+        <button class="drop-btn" id="mobileDropBtn">
+          Image Tools
+          <span id="dropArrow">▾</span>
+        </button>
+
+        <div class="dropdown-menu">
+
+          <% tools.forEach(tool => { %>
+
+          <a href="/tool/<%= tool.slug %>">
+
+            <%= tool.name %>
+
+          </a>
+
+          <% }) %>
+
+        </div>
+
+      </div>
+
+      <a href="/about">About</a>
+
+      <a href="/pricing">Pricing</a>
+
+      <a href="/faq">FAQ</a>
+
+      <a href="/contact">Contact</a>
+
+      <!-- Shown only inside the mobile slide-in menu, as the last items -->
+      <div class="mobile-auth-links">
+
+        <a href="/login" class="login-btn">Login</a>
+
+        <a href="/register" class="register-btn">Get Started</a>
+
+      </div>
+
+    </nav>
+    <button class="menu-toggle" id="menuToggle">
+      <span id="menuIcon">☰</span>
+    </button>
+
+    <!-- Right Side (desktop only) -->
+    <div class="auth-buttons">
+
+      <a href="/login" class="login-btn">
+
+        Login
+
+      </a>
+
+      <a href="/register" class="register-btn">
+
+        Get Started
+
+      </a>
+
+    </div>
+
+  </div>
+
+</header><script>
+const menuToggle=document.getElementById("menuToggle");
+const menuIcon=document.getElementById("menuIcon");
+
+const nav=document.querySelector(".main-nav");
+
+menuToggle.onclick=()=>{
+
+    nav.classList.toggle("active");
+
+    menuIcon.innerHTML=
+    nav.classList.contains("active") ? "✕":"☰";
+
+};
+
+
+// Mobile Dropdown
+
+const dropBtn=document.getElementById("mobileDropBtn");
+const dropdown=document.querySelector(".dropdown");
+const arrow=document.getElementById("dropArrow");
+
+dropBtn.onclick=(e)=>{
+
+    if(window.innerWidth<=768){
+
+        e.preventDefault();
+
+        dropdown.classList.toggle("open");
+
+        arrow.innerHTML=
+        dropdown.classList.contains("open") ? "▴":"▾";
+
+    }
+
+};
+</script>
