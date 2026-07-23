@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <%- include('partials/head', { pageTitle: 'Privacy Policy - ImgToolkit'
+        }) %>
+
+    </head>
+
+    <body>
+
+        <%- include('partials/header') %>
+
+        <section class="hero">
+
+            <div class="wrap">
+
+                <span class="eyebrow">
+                    LEGAL
+                </span>
+
+                <h1>
+                    Privacy<br>
+                    <em>Policy</em>
+                </h1>
+
+                <p class="sub">
+                    Your privacy matters. This page explains exactly what data
+                    ImgToolkit collects, what it doesn't, and how your uploaded
+                    files are handled.
+                </p>
+
+                <p class="sub" style="margin-top:10px;font-size:13px;">
+                    Last updated: <%= new Date().toLocaleDateString('en-GB', {
+                    day: 'numeric', month: 'long', year: 'numeric' }) %>
+                </p>
+
+            </div>
+
+        </section>
+
+        <div class="sprocket-divider">
+            <span></span><span></span><span></span>
+            <div class="line"></div>
+            <span></span><span></span><span></span>
+        </div>
+
+        <section class="wrap">
+
+            <div class="about-box">
+
+                <h2>1. The Short Version</h2>
+                <p>
+                    ImgToolkit does not require an account, does not track you
+                    personally, and deletes every uploaded file immediately
+                    after processing. We only keep anonymous, non-identifying
+                    usage statistics (which tool was used, file size, timestamp)
+                    — never the content of your files.
+                </p>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>2. What We Collect</h2>
+                <p>We collect the minimum needed to run the Service:</p>
+                <ul>
+                    <li>✔ <strong>Uploaded files</strong> — held only in
+                        temporary server storage during processing, then deleted
+                        automatically.</li>
+                    <li>✔ <strong>Anonymous usage logs</strong> — which tool was
+                        used, original/result file size, and timestamp. No
+                        filename content, no account, no personal identifier is
+                        attached to this.</li>
+                    <li>✔ <strong>Standard server logs</strong> — basic
+                        technical request logs (e.g. for debugging errors), kept
+                        only briefly and not used to identify individuals.</li>
+                </ul>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>3. What We Do NOT Collect</h2>
+                <ul>
+                    <li>✔ No account, name, or email address (the Service works
+                        entirely without sign-up).</li>
+                    <li>✔ No permanent storage or backup of your uploaded or
+                        processed files.</li>
+                    <li>✔ No selling or sharing of any data with advertisers or
+                        third parties.</li>
+                    <li>✔ No tracking cookies used to profile you across other
+                        websites.</li>
+                </ul>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>4. How Your Files Are Handled</h2>
+                <p>
+                    When you upload a file, it is sent securely to our server,
+                    processed by the selected tool (for example, compressed or
+                    converted), and streamed back to you as a download. Both the
+                    original upload and the processed result are deleted from
+                    our server immediately after the response is delivered —
+                    normally within seconds. We do not open, review, or scan the
+                    content of your files for any purpose beyond the processing
+                    you requested.
+                </p>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>5. Third-Party Services</h2>
+                <p>
+                    ImgToolkit runs on infrastructure provided by third-party
+                    hosting and database providers (such as Render for hosting
+                    and MongoDB Atlas for the anonymous usage log). These
+                    providers may process technical data (like IP addresses,
+                    purely for routing/security at the infrastructure level) as
+                    part of standard hosting operations, governed by their own
+                    privacy policies. We do not instruct these providers to
+                    store or inspect your file content.
+                </p>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>6. Cookies</h2>
+                <p>
+                    ImgToolkit does not use tracking or advertising cookies. Any
+                    cookies used are strictly limited to essential technical
+                    functionality (if any), and never used to build an
+                    advertising profile of you.
+                </p>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>7. Children's Privacy</h2>
+                <p>
+                    The Service is not directed at children under 13, and we do
+                    not knowingly collect personal information from children.
+                    Since no account or personal information is required to use
+                    the Service, this risk is minimal by design.
+                </p>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>8. Your Rights</h2>
+                <p>
+                    Because we don't store personal data or file content beyond
+                    the brief processing window, there is generally nothing tied
+                    to you to access, correct, or delete. If you have any
+                    concern about a specific interaction with the Service,
+                    you're welcome to contact us and we'll look into it.
+                </p>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>9. Changes to This Policy</h2>
+                <p>
+                    We may update this Privacy Policy from time to time to
+                    reflect changes in the Service. Any changes will be posted
+                    on this page with an updated "Last updated" date.
+                </p>
+
+            </div>
+
+            <div class="about-box" style="margin-top:20px;">
+
+                <h2>10. Contact Us</h2>
+                <p>
+                    If you have any questions about this Privacy Policy or how
+                    your data is handled, please reach out via our <a
+                        href="/contact" style="color:var(--amber);">Contact
+                        page</a>.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="wrap">
+
+            <div class="cta-box">
+
+                <h2>
+                    Ready to get started?
+                </h2>
+
+                <p>
+                    Explore all 16 tools — free, no account needed.
+                </p>
+
+                <a href="/" class="run-btn">
+                    Explore Tools
+                </a>
+
+            </div>
+
+        </section>
+
+        <%- include('partials/footer') %>
+
+    </body>
+
+</html>

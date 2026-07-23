@@ -1616,6 +1616,19 @@ transform:translateY(-2px);
     transform:rotate(45deg);
 
 }
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  color: var(--text-faint);
+  font-size: 13px;
+  transition: color 0.18s;
+}
+.footer-links a:hover {
+  color: var(--amber);
+}
 /* ==========================================
         RESPONSIVE FIXES
 ==========================================*/
